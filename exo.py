@@ -1,8 +1,10 @@
-def process_user_data(user_data, include_history=False):
+from typing import Dict, List, Union
+
+def process_user_data(user_data: Dict, include_history: bool=False):
     user_id = user_data["id"]
     name = user_data["name"]
     
-    result = {
+    result: Dict[str, Union[str, List[Dict[str, str]]]] = {
         "display_name": f"User {name}",
         "normalized_id": str(user_id).zfill(8)
     }
@@ -12,7 +14,7 @@ def process_user_data(user_data, include_history=False):
     
     return result
 
-def get_user_history(user_id):
+def get_user_history(user_id: str) -> List[Dict[str, str]]:
     # Simulate database call
     return [
         {"action": "login", "timestamp": "2023-10-01T10:30:00"},
